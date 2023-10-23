@@ -1,1 +1,5 @@
-Started with layout.html, to make general layout of the page
+Started with layout.html, to make general layout of the page.
+Using bootstrap for nav bar and customisations. Then using {% if session["user_id"] %} from finance, so when specific user is logged in, then they can view their personal dashboard.
+
+
+Need to add something that allows user to register, login, logout
