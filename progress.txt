@@ -3,3 +3,15 @@ Using bootstrap for nav bar and customisations. Then using {% if session["user_i
 
 
 Need to add something that allows user to register, login, logout in the app. Mentioned in the layout for button functions
+
+
+26/10/2023
+Finished layout.html
+Went on app.py to import all the needed modules, downloaded flask, made virtual enviroment
+
+01/11/2023
+Working on app.py
+made user_database.db to store users
+
+03/11/2023
+realised using something else to connect to the SQL database was a bad idea
