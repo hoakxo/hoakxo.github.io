@@ -1,6 +1,6 @@
 import os
 import datetime
-import sqlite3
+import sqlite3 as sql
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
@@ -20,7 +20,13 @@ Session(app)
 # importing user database
 db = mysql.connector.connect()
 def get_db():
-    connection = sql.connect("user_database.db")
+    try:
+        connection = sql.connect("user_database.db", uri=True)
+        connection.row_factory = sql.Row
+    except:
+        print("Error opening database, please check file exists in correct directory.")
+        os.sys.exit(1)
+    return connection
 
 
 @app.after_request
@@ -40,6 +46,23 @@ def after_request(response):
 @app.route("/")
 def home():
     return "Hello app"
+
+# PROGRESS
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """Register user"""
+
+    if request.method == "GET":
+        return render_template("register.html")
+    
+    else:
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+
+        if not username:
+            return ("Please enter username.")
 
 # APP PROGRESS
 @app.route("/login", methods=["GET", "POST"])
